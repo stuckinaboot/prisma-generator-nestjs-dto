@@ -121,5 +121,6 @@ export const computeEntityParams = ({
     fields,
     imports: zipImportStatementParams(imports),
     apiExtraModels,
+    annotateAllDtoProperties: false,
   };
 };

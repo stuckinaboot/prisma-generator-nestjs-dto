@@ -44,6 +44,12 @@ export const generate = (options: GeneratorOptions) => {
     false,
   );
 
+  const annotateAllDtoProperties = stringToBoolean(
+    options.generator.config.annotateAllDtoProperties,
+    // using `true` as default value would be a breaking change
+    false,
+  );
+
   const reExport = stringToBoolean(
     options.generator.config.reExport,
     // using `true` as default value would be a breaking change
@@ -61,6 +67,7 @@ export const generate = (options: GeneratorOptions) => {
     dtoSuffix,
     entityPrefix,
     entitySuffix,
+    annotateAllDtoProperties,
   });
 
   const indexCollections: Record<string, WriteableFileSpecs> = {};

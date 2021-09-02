@@ -95,10 +95,10 @@ export const computeUpdateDtoParams = ({
     return [...result, mapDMMFToParsedField(field, overrides)];
   }, [] as ParsedField[]);
 
-  if (apiExtraModels.length || hasEnum) {
+  if (apiExtraModels.length || hasEnum || annotateAllDtoProperties) {
     const destruct = [];
     if (apiExtraModels.length) destruct.push('ApiExtraModels');
-    if (hasEnum) destruct.push('ApiProperty');
+    if (hasEnum || annotateAllDtoProperties) destruct.push('ApiProperty');
     imports.unshift({ from: '@nestjs/swagger', destruct });
   }
 
