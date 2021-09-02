@@ -48,6 +48,7 @@ export interface ImportStatementParams {
 export interface DtoParams {
   model: DMMF.Model;
   fields: ParsedField[];
+  annotateAllProps: boolean;
   // should include all Enums, ExtraModels, ConnectDTOs and CreateDTOs for related models
   imports: ImportStatementParams[];
 }

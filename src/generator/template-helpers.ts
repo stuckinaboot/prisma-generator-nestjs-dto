@@ -146,23 +146,28 @@ export const makeHelpers = ({
     field: ParsedField,
     useInputTypes = false,
     forceOptional = false,
+    annotateAllProps = false,
   ) =>
     `${when(
       field.kind === 'enum',
       `@ApiProperty({ enum: ${fieldType(field, useInputTypes)}})\n`,
-    )}${field.name}${unless(
-      field.isRequired && !forceOptional,
-      '?',
-    )}: ${fieldType(field, useInputTypes)};`;
+    )}${when(field.kind !== 'enum' && annotateAllProps, `@ApiProperty()\n`)}${
+      field.name
+    }${unless(field.isRequired && !forceOptional, '?')}: ${fieldType(
+      field,
+      useInputTypes,
+    )};`;
 
   const fieldsToDtoProps = (
     fields: ParsedField[],
     useInputTypes = false,
     forceOptional = false,
+    annotateAllProps = false,
   ) =>
     `${each(
       fields,
-      (field) => fieldToDtoProp(field, useInputTypes, forceOptional),
+      (field) =>
+        fieldToDtoProp(field, useInputTypes, forceOptional, annotateAllProps),
       '\n',
     )}`;
 

@@ -8,10 +8,11 @@ export const generateConnectDto = ({
   model,
   fields,
   templateHelpers: t,
+  annotateAllProps,
 }: GenerateConnectDtoParam) => {
   const template = `
   export class ${t.connectDtoName(model.name)} {
-    ${t.fieldsToDtoProps(fields, true)}
+    ${t.fieldsToDtoProps(fields, true, false, annotateAllProps)}
   }
   `;
 
