@@ -13,7 +13,7 @@ export const generateCreateDto = ({
   apiExtraModels,
   exportRelationModifierClasses,
   templateHelpers: t,
-  annotateAllProps,
+  annotateAllDtoProperties,
 }: GenerateCreateDtoParam) => `
 ${t.importStatements(imports)}
 
@@ -25,6 +25,6 @@ ${t.each(
 
 ${t.if(apiExtraModels.length, t.apiExtraModels(apiExtraModels))}
 export class ${t.createDtoName(model.name)} {
-  ${t.fieldsToDtoProps(fields, true, false, annotateAllProps)}
+  ${t.fieldsToDtoProps(fields, true, false, annotateAllDtoProperties)}
 }
 `;

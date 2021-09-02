@@ -35,11 +35,13 @@ interface ComputeUpdateDtoParamsParam {
   model: Model;
   allModels: Model[];
   templateHelpers: TemplateHelpers;
+  annotateAllDtoProperties: boolean;
 }
 export const computeUpdateDtoParams = ({
   model,
   allModels,
   templateHelpers,
+  annotateAllDtoProperties,
 }: ComputeUpdateDtoParamsParam): UpdateDtoParams => {
   let hasEnum = false;
   const imports: ImportStatementParams[] = [];
@@ -109,5 +111,6 @@ export const computeUpdateDtoParams = ({
     imports: zipImportStatementParams(imports),
     extraClasses,
     apiExtraModels,
+    annotateAllDtoProperties,
   };
 };

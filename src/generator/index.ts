@@ -27,6 +27,7 @@ interface RunParam {
   dtoSuffix: string;
   entityPrefix: string;
   entitySuffix: string;
+  annotateAllDtoProperties: boolean;
 }
 export const run = ({
   output,
@@ -36,6 +37,7 @@ export const run = ({
   const {
     exportRelationModifierClasses,
     outputToNestJsResourceStructure,
+    annotateAllDtoProperties,
     ...preAndSuffixes
   } = options;
 
@@ -69,6 +71,7 @@ export const run = ({
       model,
       allModels: filteredModels,
       templateHelpers,
+      annotateAllDtoProperties,
     });
 
     // generate connect-model.dto.ts
